@@ -1,0 +1,46 @@
+version: '2'
+services:
+    olegdb:
+        container_name: olegdb
+        networks:
+            olegnet:
+                ipv4_address: 177.168.1.12
+        image: swayoleg/lamp-db:5.7
+        volumes:
+            - /srv/olegsrv/db_data:/var/lib/mysql
+        expose:
+            - "3306"
+        extra_hosts:
+         - "olegsrv:177.168.1.10"
+        environment:
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    olegsrv:
+        container_name: ${COMPOSE_PROJECT_NAME}
+        volumes:
+            - /srv/olegsrv/projects:/var/www/
+            - /u1604/www/oleg:/var/www2/
+            - sockets:/docker/sockets
+        networks:
+            olegnet:
+                ipv4_address: 177.168.1.10
+        image: swayoleg/lamp:1.0
+        links:
+            - olegdb
+        extra_hosts:
+         - "olegdb:177.168.1.12"
+        expose:
+            - "80"
+            - "443"
+            - "9001"
+        environment:
+            - VIRTUAL_HOST=${COMPOSE_PROJECT_NAME}.dev,TERM=${TERM}
+volumes:
+    sockets:
+        driver: local
+networks:
+    olegnet:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 177.168.1.0/22
+                  gateway: 177.168.1.1
