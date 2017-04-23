@@ -14,6 +14,7 @@ RUN apt-key update && \
     apt-get install -y \
         iputils-ping \
         gcc \
+        re2c \
         git \
         git-core \
         locales-all \

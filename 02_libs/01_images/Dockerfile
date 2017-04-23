@@ -7,7 +7,7 @@ ADD jpegsrc.v8c.tar.gz /usr/local/src/
 
 ############ IMAGES SUPPORT ###########
 RUN apt-get install -y -f  libjpeg-dev libpng-dev libfreetype6 libfreetype6-dev zlib1g-dev && \
-    apt-get install -y optipng pngcrush  jpegoptim imagemagick libmagickwand-dev  && \
+    apt-get install -y optipng pngcrush  jpegoptim imagemagick && \
     ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib && \
     ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib && \
     ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib && \
@@ -20,6 +20,6 @@ RUN apt-get install -y -f  libjpeg-dev libpng-dev libfreetype6 libfreetype6-dev 
     make && \
     make install && \
     echo "jpeg installed" && \
-    apt-get install -y imagemagick libmagickcore-dev libmagickwand-dev
+    apt-get install -y imagemagick libmagickcore-dev imagemagick
 
 CMD ["bash", "/docker/bin/run.sh"]

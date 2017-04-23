@@ -16,13 +16,13 @@ services:
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     swayolegsrv:
         container_name: ${SRV_CONTAINER}
+        build: .
         volumes:
             - ..:/var/www/html
             - sockets:/docker/sockets
         networks:
             swayolegnet:
                 ipv4_address: ${SRV_IP}
-        image: swayoleg/lamp:1.0
         links:
             - swayolegdb
         extra_hosts:

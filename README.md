@@ -54,6 +54,18 @@ This is basic example of usage.
 `NET_GATEWAY=177.168.1.1`\
 `NET_SUBNET=177.168.1.0/22`
 
+# Bash
+
+For server bash connection you can use 
+
+- `docker exec -ti swayoleg-lamp-example bash` where swayoleg-lamp-example is container name, you set at .env file
+- `docker-compose exec swayolegsrv bash`
+
+# Logs
+
+Virtual host logs are located at /var/www/ folder
+Mysql logs are located at /var/log/mysql/error.log
+
 # Additional
 
 - You can remove quickly unused images by `sh cleanup.sh`
