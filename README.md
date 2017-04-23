@@ -115,7 +115,12 @@ When you place swayoleg-lamp folder to your %projectflder% please note:
 For server bash connection you can use 
 
 - `docker exec -ti swayoleg-lamp-example bash` where swayoleg-lamp-example is container name, you set at .env file
-- `docker-compose exec swayolegsrv bash`
+- `docker-compose exec srv bash`
+
+For mysql bash connection you can use
+
+- `docker exec -ti swayoleg-lamp-db-example bash` where swayoleg-lamp-example is container name, you set at .env file
+- `docker-compose exec swayolegdb bash`
 
 ## Logs
 
