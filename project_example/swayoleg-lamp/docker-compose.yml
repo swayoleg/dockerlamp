@@ -17,8 +17,9 @@ services:
     swayolegsrv:
         container_name: ${SRV_CONTAINER}
         build: .
+        image: swayoleglamp_${VIRTUAL_HOST}
         volumes:
-            - ..:/var/www/html
+            - ${APP_PATH}:/var/www/html
             - sockets:/docker/sockets
         networks:
             swayolegnet:
