@@ -1,39 +1,39 @@
 version: '2'
 services:
-    olegdb:
-        container_name: olegdb
+    swayolegdb:
+        container_name: ${DB_CONTAINER}
         networks:
             olegnet:
-                ipv4_address: 177.168.1.12
+                ipv4_address: ${DB_IP}
         image: swayoleg/lamp-db:5.7
         volumes:
-            - /srv/olegsrv/db_data:/var/lib/mysql
+            - ${DB_FOLDER}:/var/lib/mysql
         expose:
             - "3306"
         extra_hosts:
-         - "olegsrv:177.168.1.10"
+         - ${SRV_CONTAINER}:${SRV_IP}
         environment:
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-    olegsrv:
-        container_name: ${COMPOSE_PROJECT_NAME}
+    swayolegsrv:
+        container_name: ${SRV_CONTAINER}
         volumes:
             - /srv/olegsrv/projects:/var/www/
             - /u1604/www/oleg:/var/www2/
             - sockets:/docker/sockets
         networks:
             olegnet:
-                ipv4_address: 177.168.1.10
+                ipv4_address: ${SRV_IP}
         image: swayoleg/lamp:1.0
         links:
-            - olegdb
+            - swwayolegdb
         extra_hosts:
-         - "olegdb:177.168.1.12"
+         - ${DB_CONTAINER}:${DB_IP}
         expose:
             - "80"
             - "443"
             - "9001"
         environment:
-            - VIRTUAL_HOST=${COMPOSE_PROJECT_NAME}.dev,TERM=${TERM}
+            - VIRTUAL_HOST=${SRV_CONTAINER}.dev,TERM=${TERM}
 volumes:
     sockets:
         driver: local
@@ -42,5 +42,5 @@ networks:
         driver: bridge
         ipam:
             config:
-                - subnet: 177.168.1.0/22
-                  gateway: 177.168.1.1
+                - subnet: ${NET_SUBNET}
+                  gateway: ${NET_GATEWAY}

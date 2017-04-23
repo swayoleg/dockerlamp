@@ -49,5 +49,4 @@ ADD configs/supervisord.conf /etc/supervisord.conf
 
 COPY configs/home/* /root/
 
-
 CMD ["bash", "/docker/bin/run.sh"]

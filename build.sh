@@ -3,8 +3,9 @@
 CACHE="--no-cache"
 #CACHE=""
 
+
 # CORE IMAGE LAYER
-#docker build ${CACHE} -t swayoleg/lamp-base:1.0     01_base
+docker build ${CACHE} -t swayoleg/lamp-base:1.0     01_base
 
 # LIBS IMAGE LAYER with  images support
 docker build ${CACHE} -t swayoleg/lamp-images:1.0   02_libs/01_images
@@ -12,14 +13,17 @@ docker build ${CACHE} -t swayoleg/lamp-images:1.0   02_libs/01_images
 # SERVICES IMAGE LAYER
 docker build ${CACHE} -t swayoleg/lamp-redis:1.0    03_services/01_redis
 
+#DATABASE
+docker build ${CACHE} -t swayoleg/lamp-db:5.7       04_database/01_mysql/5.7
+
 # PHP IMAGE LAYER
 docker build ${CACHE} -t swayoleg/lamp-php:7.0      05_php/03_7.0
 
 # SERVER image layer
 docker build ${CACHE} -t swayoleg/lamp-apache:2.0   06_server/01_apache2
 
-#DATABASE
-docker build ${CACHE} -t swayoleg/lamp-db:5.7       04_database/01_mysql
+#utils like sendmail etc
+docker build ${CACHE} -t swayoleg/lamp-utils:1.0    07_utils
 
 
 # FINAL LAMP

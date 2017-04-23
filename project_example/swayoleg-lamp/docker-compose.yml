@@ -1,0 +1,45 @@
+version: '2'
+services:
+    swayolegdb:
+        container_name: ${DB_CONTAINER}
+        networks:
+            swayolegnet:
+                ipv4_address: ${DB_IP}
+        image: swayoleg/lamp-db:5.7
+        volumes:
+            - ${DB_FOLDER}:/var/lib/mysql
+        expose:
+            - "3306"
+        extra_hosts:
+         - ${SRV_CONTAINER}:${SRV_IP}
+        environment:
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    swayolegsrv:
+        container_name: ${SRV_CONTAINER}
+        volumes:
+            - ..:/var/www/html
+            - sockets:/docker/sockets
+        networks:
+            swayolegnet:
+                ipv4_address: ${SRV_IP}
+        image: swayoleg/lamp:1.0
+        links:
+            - swwayolegdb
+        extra_hosts:
+         - ${DB_CONTAINER}:${DB_IP}
+        expose:
+            - "80"
+            - "443"
+            - "9001"
+        environment:
+            - VIRTUAL_HOST=${VIRTUAL_HOST}.dev,TERM=${TERM}
+volumes:
+    sockets:
+        driver: local
+networks:
+    swayolegnet:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: ${NET_SUBNET}
+                  gateway: ${NET_GATEWAY}
