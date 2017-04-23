@@ -24,7 +24,7 @@ services:
                 ipv4_address: ${SRV_IP}
         image: swayoleg/lamp:1.0
         links:
-            - swwayolegdb
+            - swayolegdb
         extra_hosts:
          - ${DB_CONTAINER}:${DB_IP}
         expose:
