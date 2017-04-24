@@ -1,8 +1,9 @@
-FROM swayoleg/lamp:1.0
+FROM swayoleg/lamp-one:1.0
 
 ############# COPY VIRTUALHOST ################
 
 ADD olegsrv.conf /etc/apache2/sites-available/olegsrv.conf
+ADD auth.json /.composer/auth.json
 ADD .env /.env
 RUN export $(cat /.env | xargs) && \
 mkdir -p /var/www/html/$URL_ROOT_FOLDER_FROM_APP_PATH && \

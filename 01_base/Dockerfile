@@ -46,7 +46,9 @@ RUN apt-key update && \
 
 ADD bin /docker/bin
 
+# Supervisor Config
 ADD configs/supervisord.conf /etc/supervisord.conf
+ADD configs/supervisor/* /etc/supervisor/conf.d/
 
 COPY configs/home/* /root/
 

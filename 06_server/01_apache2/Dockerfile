@@ -19,9 +19,10 @@ RUN apt-get install -y apache2 apache2-doc apache2-utils && \
     echo "ServerName 127.0.0.1" >>  /etc/apache2/apache2.conf && \
     echo "HostnameLookups Off" >>  /etc/apache2/apache2.conf
 
-ADD 000-default.conf /etc/apache2/sites-available/000-default.conf
+ADD configs/000-default.conf /etc/apache2/sites-available/000-default.conf
 
-RUN service apache2 restart
+RUN a2enmod rewrite include ssl && \
+service apache2 restart
 
 ADD bin /docker/bin
 

@@ -12,7 +12,7 @@ Only the first build will take some time (You can grab some tee meanwhile), then
 
 0. Run `sh build.sh` &nbsp;
 1. Run `cd project_example/swayoleg.lamp && docker-compose up -d` &nbsp;
-2. Open 177.168.1.10 at browser and see phpinfo
+2. Open 177.168.1.10 at browser and see phpinfo from project folder
 
 This is basic example of usage.
 
@@ -23,9 +23,9 @@ This is basic example of usage.
 2. Copy project_example/swayoleg-lamp to your project folder as %yourprojectpath%/swayoleg-lamp
 3. Edit %yourprojectpath%/swayoleg-lamp/.env with your values. The main config option are VIRTUAL_HOST (the domain to work with, without www ) and DB_FOLDER - please make sure it exists and writable
 4. Map your dev domain (VIRTUAL_HOST from previous step) to ip of srv container `SRV_IP`  &nbsp; (add 177.168.1.10 yourproject.domain at hosts file)
-5. If your project has different web root, please edit .env with `APP_PATH` &nbsp and `URL_ROOT_FOLDER_FROM_APP_PATH` &nbsp; values.
+5. If your project has different web root, please edit .env with `APP_PATH` &nbsp and `URL_ROOT_FOLDER_FROM_APP_PATH` &nbsp; values. More info see at "##### The folder mapping section"
 6. Go to %yourprojectpath%/swayoleg-lamp/ and run the docker-compose up -d. `cd swayoleg-lamp && docker-compose up -d` &nbsp;
-7. open browser with your domain mapped on `SRV_IP` &nbsp;
+7. open browser with your domain mapped on `SRV_IP` &nbsp; and see phpinfo
 
 
 ## Configuration with .env
@@ -68,7 +68,7 @@ In next example we have the app configured with virtual host for `swayoleg.lamp`
  NET_SUBNET=177.168.1.0/22`
 ```
 
-##### Your domain name to work with please specify at: 
+##### The domain name to work with, please specify at: 
 `VIRTUAL_HOST` &nbsp; section
 
 - container names ( TIP: use your project name for srv per project and same db container name for all projects, cuz you actually dont need more instances for db )
@@ -129,8 +129,8 @@ For mysql bash connection you can use
 
 ## Additional
 
-- You can remove quickly unused images by `sh cleanup.sh`
-- The `sh rmi.sh` will remove all built images of this project
+- You can remove unused docker container images quickly by `sh docker-cleanup.sh`
+- The `sh project-cleanup.sh` will remove all built images of this project
 - The adminer interface will be available via ${SRV_IP}/adminer/ which is 
 177.168.1.10/adminer/ by default
 - Use ${DB_IP} (177.168.1.12 by default) for connecting to mysql host.
