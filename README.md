@@ -1,7 +1,7 @@
 # Dockerlamp
 Docker LAMP sceleton. 
-Fast docker web project up for your existing or new web projects. 
-If you don't want to waste your time to changing/setuping the envirenment for some wepapps you can simply clone the repo and build the images, and then run your project on builded envirenment.
+Fast docker web project up for your existing or new web projects with an envirement you want.
+If you don't want to waste your time to changing/setuping the envirenment for some webapps you can simply clone the repo and build the images, and then run your project on built environment.
 
 Only the first build will take some time (You can grab some tee meanwhile), then docker images are cached.
 
@@ -129,8 +129,8 @@ For mysql bash connection you can use
 
 ## Additional
 
-- You can remove unused docker container images quickly by `sh docker-cleanup.sh`
-- The `sh project-cleanup.sh` will remove all built images of this project
+- You can remove unused docker container images quickly by `sh ./sh/docker-cleanup.sh`
+- The `sh ./sh/project-cleanup.sh` will remove all built images of this project
 - The adminer interface will be available via ${SRV_IP}/adminer/ which is 
 177.168.1.10/adminer/ by default
 - Use ${DB_IP} (177.168.1.12 by default) for connecting to mysql host.
