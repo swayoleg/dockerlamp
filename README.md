@@ -1,3 +1,7 @@
+# DEPRECATED
+
+## Only reference use purpose
+
 # Dockerlamp
 Docker LAMP sceleton. 
 Fast docker web project up for your existing or new web projects with an envirement you want.
